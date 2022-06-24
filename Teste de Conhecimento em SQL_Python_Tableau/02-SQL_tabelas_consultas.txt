@@ -1,0 +1,269 @@
+CREATE DATABASE escola_x;
+
+CREATE TABLE aluno (
+id INT NOT NULL AUTO_INCREMENT,
+nome VARCHAR(50),
+dt_nascimento DATE,
+PRIMARY KEY (id)
+);
+
+CREATE TABLE disciplina (
+id INT NOT NULL AUTO_INCREMENT,
+nome VARCHAR(50),
+qtd_creditos INT,
+PRIMARY KEY (id)
+);
+
+CREATE TABLE turma (
+id INT NOT NULL AUTO_INCREMENT,
+id_disciplina INT,
+turno VARCHAR(50),
+PRIMARY KEY (id)
+);
+
+ALTER TABLE turma
+ADD FOREIGN KEY (id_disciplina)
+REFERENCES disciplina (id)
+
+CREATE TABLE matricula (
+id INT NOT NULL AUTO_INCREMENT,
+id_aluno INT,
+id_turma INT,
+dt_matricula DATE,
+periodo_letivo YEAR,
+PRIMARY KEY (id)
+);
+
+ALTER TABLE matricula
+ADD FOREIGN KEY (id_aluno)
+REFERENCES aluno (id)
+
+ALTER TABLE matricula
+ADD FOREIGN KEY (id_turma)
+REFERENCES turma (id)
+
+CREATE TABLE mensalidade (
+id INT NOT NULL AUTO_INCREMENT,
+id_matricula INT,
+dt_vencimento DATE,
+valor DECIMAL(7,2),
+status_pagto VARCHAR(50),
+PRIMARY KEY (id)
+);
+
+ALTER TABLE mensalidade
+ADD FOREIGN KEY (id_matricula)
+REFERENCES matricula (id)
+
+INSERT INTO aluno
+(nome, dt_nascimento )
+values
+('Neymar', '1990-05-20'),
+('Coutinho', '1989-04-25'),
+('Casemiro', '1991-03-15'),
+('Romario', '1985-04-22'),
+('Gabriel Jesus', '1992-06-18');
+
+/*Inserir mais um aluno que esta matriculado em 2022 em Fisica I sem mensalidades*/
+INSERT INTO aluno
+(nome, dt_nascimento )
+values
+('Rivaldo', '1991-09-20');
+
+/*Inserir mais um aluno que esta matriculado em 2022 em Fisica I sem mensalidades*/
+INSERT INTO aluno
+(nome, dt_nascimento )
+values
+('Kaka', '1991-09-15');
+
+SELECT * FROM aluno
+
+INSERT INTO disciplina
+(nome, qtd_creditos)
+values
+('Fisica I', '45'),
+('Matematica I', '60'),
+('Historia I', '45'),
+('Geografia I', '45'),
+('Quimica I', '30');
+
+SELECT * FROM disciplina
+
+INSERT INTO turma
+(id_disciplina, turno)
+values
+('1', 'Noturno'),
+('2', 'Noturno'),
+('3', 'Noturno'),
+('4', 'Noturno'),
+('5', 'Noturno');
+
+SELECT * FROM turma
+
+INSERT INTO matricula
+(id_aluno, id_turma, dt_matricula, periodo_letivo)
+values
+('1', '1', '2021-08-01', '2021'),
+('1', '2', '2022-01-01', '2022'),
+('2', '1', '2021-08-01', '2021'),
+('2', '2', '2022-01-01', '2022'),
+('3', '1', '2021-08-01', '2021'),
+('3', '2', '2022-01-01', '2022'),
+('4', '3', '2021-01-01', '2021'),
+('4', '4', '2021-08-01', '2021'),
+('5', '3', '2021-01-01', '2021'),
+('5', '4', '2021-08-01', '2021');
+
+/*Inserido o aluno de Fisica I matricula 2022 - ALuno Gabriel Jesus*/
+INSERT INTO matricula
+(id_aluno, id_turma, dt_matricula, periodo_letivo)
+values
+('5', '1', '2022-01-01', '2022');
+
+/*Inserido o aluno de Fisica I e Matematica I matricula 2022 - Aluno Rivaldo*/
+INSERT INTO matricula
+(id_aluno, id_turma, dt_matricula, periodo_letivo)
+values
+('6', '1', '2022-01-01', '2022');
+
+INSERT INTO matricula
+(id_aluno, id_turma, dt_matricula, periodo_letivo)
+values
+('6', '2', '2022-01-01', '2022');
+
+/*Inserido o aluno de Fisica I matricula 2022 - Aluno Kaka*/
+INSERT INTO matricula
+(id_aluno, id_turma, dt_matricula, periodo_letivo)
+values
+('7', '1', '2022-01-01', '2022');
+
+SELECT * FROM matricula
+
+INSERT INTO mensalidade
+(id_matricula, dt_vencimento, valor, status_pagto)
+values
+('1', '2021-08-01', '500.00', 'PAGO'),
+('1', '2021-09-01', '500.00', 'PAGO'),
+('1', '2021-10-01', '500.00', 'PAGO'),
+('1', '2021-11-01', '500.00', 'PAGO'),
+('1', '2021-12-01', '500.00', 'PAGO'),
+('2', '2022-01-01', '500.00', 'PAGO'),
+('2', '2022-02-01', '500.00', 'EM ATRASO'),
+('2', '2022-03-01', '500.00', 'EM ATRASO'),
+('2', '2022-04-01', '500.00', 'EM ATRASO'),
+('3', '2021-08-01', '500.00', 'PAGO'),
+('3', '2021-09-01', '500.00', 'PAGO'),
+('3', '2021-10-01', '500.00', 'PAGO'),
+('3', '2021-11-01', '500.00', 'PAGO'),
+('3', '2021-12-01', '500.00', 'PAGO'),
+('4', '2022-01-01', '500.00', 'PAGO'),
+('4', '2022-02-01', '500.00', 'PAGO'),
+('4', '2022-03-01', '500.00', 'EM ATRASO'),
+('4', '2022-04-01', '500.00', 'EM ATRASO'),
+('5', '2021-08-01', '500.00', 'PAGO'),
+('5', '2021-09-01', '500.00', 'PAGO'),
+('5', '2021-10-01', '500.00', 'PAGO'),
+('5', '2021-11-01', '500.00', 'PAGO'),
+('5', '2021-12-01', '500.00', 'PAGO'),
+('6', '2022-01-01', '500.00', 'PAGO'),
+('6', '2022-02-01', '500.00', 'PAGO'),
+('6', '2022-03-01', '500.00', 'PAGO'),
+('6', '2022-04-01', '500.00', 'PAGO'),
+('7', '2021-01-01', '400.00', 'PAGO'),
+('7', '2021-02-01', '400.00', 'PAGO'),
+('7', '2021-03-01', '400.00', 'PAGO'),
+('7', '2021-04-01', '400.00', 'PAGO'),
+('7', '2021-05-01', '400.00', 'PAGO'),
+('7', '2021-06-01', '400.00', 'PAGO'),
+('8', '2021-08-01', '500.00', 'PAGO'),
+('8', '2021-09-01', '500.00', 'EM ATRASO'),
+('8', '2021-10-01', '500.00', 'EM ATRASO'),
+('8', '2021-11-01', '500.00', 'EM ATRASO'),
+('8', '2021-12-01', '500.00', 'EM ATRASO');
+
+/*Inserido o aluno de Fisica I (Gabriel Jesus) matricula 2022 que não possuem mensalidades geradas*/
+INSERT INTO mensalidade
+(id_matricula, dt_vencimento, valor, status_pagto)
+values
+('11', null, null, null);
+
+/*Inserido o aluno de Fisica I (Rivaldo) matricula 2022 que não possuem mensalidades geradas*/
+INSERT INTO mensalidade
+(id_matricula, dt_vencimento, valor, status_pagto)
+values
+('12', null, null, null);
+
+/*Inserido o aluno de Matematica I (Rivaldo) matricula 2022 que não possuem mensalidades geradas*/
+INSERT INTO mensalidade
+(id_matricula, dt_vencimento, valor, status_pagto)
+values
+('13', null, null, null);
+
+/*Inserido o aluno de Fisica I (Kaka) matricula 2022 que possuem mensalidades geradas*/
+INSERT INTO mensalidade
+(id_matricula, dt_vencimento, valor, status_pagto)
+values
+('14', '2022-01-01', '500.00', 'PAGO');
+
+SELECT * FROM mensalidade
+
+/*EXERCÍCIO 02 LETRA A */
+/*Consulta de registros nome de aluno x valor de cada mensalidades*/
+SELECT aluno.nome, mensalidade.valor, mensalidade.dt_vencimento, matricula.periodo_letivo FROM matricula
+JOIN aluno
+ON matricula.id_aluno = aluno.id
+JOIN mensalidade
+ON matricula.id = mensalidade.id_matricula
+
+/*Consulta de registros nome de aluno x valor total de mensalidades*/
+SELECT aluno.nome, SUM(mensalidade.valor) AS valor_total_mensalidades FROM matricula
+JOIN aluno
+ON matricula.id_aluno = aluno.id
+JOIN mensalidade
+ON matricula.id = mensalidade.id_matricula
+GROUP  BY aluno.nome;
+
+/*EXERCÍCIO 02 LETRA B */
+
+/*Consulta de valor total de mensalidade existentes em cada período letivo*/
+SELECT disciplina.nome, disciplina.qtd_creditos, matricula.periodo_letivo, SUM(mensalidade.valor) AS valor_total_mensalidades FROM matricula
+JOIN turma
+ON matricula.id_turma = turma.id
+JOIN disciplina
+ON turma.id_disciplina = disciplina.id
+JOIN mensalidade
+ON matricula.id = mensalidade.id_matricula
+GROUP  BY disciplina.nome;
+
+/*EXERCÍCIO 02 LETRA C */
+
+/*Consulta de valor de mensalidade existentes por aluno e status de pagamento*/
+SELECT aluno.nome, mensalidade.valor, mensalidade.status_pagto, mensalidade.dt_vencimento FROM matricula
+JOIN aluno
+ON matricula.id_aluno = aluno.id
+JOIN mensalidade
+ON matricula.id = mensalidade.id_matricula
+
+/*Consulta de valor total de mensalidade existentes por aluno e status de pagamento "PAGO"*/
+SELECT aluno.nome,SUM(mensalidade.valor) AS valor_total_mensalidades, mensalidade.status_pagto FROM matricula
+JOIN aluno
+ON matricula.id_aluno = aluno.id
+JOIN mensalidade
+ON matricula.id = mensalidade.id_matricula
+WHERE status_pagto = 'PAGO'
+GROUP  BY aluno.nome;
+
+/*EXERCÍCIO 02 LETRA D */
+/*Consulta alunos com primeira matricula no semestre atual*/
+
+SELECT aluno.nome, matricula.dt_matricula, disciplina.nome, mensalidade.dt_vencimento, mensalidade.valor, mensalidade.status_pagto, IF(dt_matricula < '2022-01-01', 'Não é 1ª matricula', 'É 1ª matricula') AS situacao_matricula FROM matricula
+JOIN turma
+ON matricula.id_turma = turma.id
+JOIN disciplina
+ON turma.id_disciplina = disciplina.id
+JOIN aluno
+ON matricula.id_aluno = aluno.id
+JOIN mensalidade
+ON matricula.id = mensalidade.id_matricula
+WHERE disciplina.nome = 'Fisica I' AND dt_vencimento IS NULL 
+GROUP  BY aluno.nome

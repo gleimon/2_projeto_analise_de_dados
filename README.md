@@ -36,15 +36,15 @@
 Neste contexto o objetivo principal do nosso projeto é realizar uma análise exploratória e umaapresentação com os insights encontrados.
 Esse dataset é uma amostra de dados referentes as operações de vendas fictícias. A base de dados tem alguns valores faltantes e o tamanho da base influencia para algumas analises estatisticas.
 #### No Microsoft Excel foram realizados alguns tratamentos nos dados do dataset:
-#####anal_data_venda
+##### anal_data_venda
 - Criada essa coluna para análise de vendas onde a data de concretização da venda é inferior a data de solicitação do cliente
-#####data_pagto_trat
+##### data_pagto_trat
 - Criada essa coluna, pois algumas datas de pagamento estavam com data configuradas no sistema inglês.
-#####valor_venda
+##### valor_venda
 - Realizado tratamento nos valores que estavam formatados com (.) ao invès de (,).
-#####pol_comissao
+##### pol_comissao
 - Realizado tratamento nos valores que estavam formatados com (.) ao invès de (,).
-#####valor_comissao_trat
+##### valor_comissao_trat
 - Criada essa coluna, pois alguns valores de comissão não estavam calculados conforme valor_venda e pol_comissao.
 
 ### Projetos em SQL_Python_Tableau. Consultar em SQL - Demonstração de criação do diagrama, banco de dados e  diversas formas de realizar consultas em um banco de dados.

@@ -3,7 +3,7 @@
 # Demonstrações de Projetos realizados em Python_Tableau_SQL_Excel
 
 ## Dashboard realizado em Microsoft Excel - Demonstração de um resumo de informações ficticias de uma empresa, a medida que os menus vão sendo selecionados os gráficos alteram de forma dinâmica.
-- Nessse Dashboard Excel são utilizados os recursos de:
+#### Nessse Dashboard Excel são utilizados os recursos de:
 - Gráficos Dinâmicos, 
 - Tabelas Dinâmicas, 
 - Segmentação de Dados, 
